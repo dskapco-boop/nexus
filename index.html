@@ -266,6 +266,62 @@ const CAL_OBJS = CAL.map(c=>({
 }));
 
 // =============================================
+// LIVE DATA (auto-refreshed from data/suppliers.json — the data engine's
+// weekly Google + DuckDuckGo discovery output). Falls back silently to the
+// embedded snapshot when the file is missing or offline.
+// =============================================
+let LIVE=[];let LIVE_META=null;
+function norm(s){return String(s||'').toLowerCase().replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim()}
+function lev(a,b){if(a===b)return 0;const m=a.length,n=b.length;if(!m)return n;if(!n)return m;let p=Array.from({length:n+1},(_,i)=>i);for(let i=1;i<=m;i++){let c=[i];for(let j=1;j<=n;j++){c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1))}p=c}return p[n]}
+const SYN={extinguisher:['fire','firefighting','fire safety','fire suppression','safety'],fire:['extinguisher','firefighting','safety','flame'],safety:['ppe','extinguisher','fire','protection'],gauge:['pressure gauge','manometer','instrument','pressure'],pressure:['gauge','manometer','instrument'],valve:['valves','actuator','pipeline'],pump:['pumps','water pump'],compressor:['compressed air','air compressor'],welding:['welder','arc welding'],cable:['cables','wiring','electrical'],shoe:['footwear','boots','safety shoes'],calibrat:['calibration','iso 17025','metrology','measuring','testing'],measur:['calibration','metrology','gauge','instrument'],lab:['laboratory','lab equipment'],hvac:['air conditioning','chiller','cooling','duct'],seal:['gasket','o-ring','sealing'],bearing:['bearings'],motor:['motors','electric motor'],filter:['filters','air filter','oil filter'],ladder:['access equipment'],camera:['cctv','surveillance'],glass:['glazing','glassware'],door:['doors','access'],tools:['hand tools','power tools'],gear:['gearbox','gears'],boiler:['steam boiler','heating'],tank:['storage tank','tanks'],thermometer:['temperature','temperature gauge','thermal','calibration'],temp:['temperature','thermometer'],weigh:['weighing scale','scale','balance','weight'],scale:['weighing','weight','balance'],electrical:['electric','power','switchgear','cable'],instrument:['instruments','gauges','measurement','calibration']};
+async function loadLiveData(){
+    try{
+        const r=await fetch('data/suppliers.json',{cache:'no-cache'});
+        if(!r.ok)throw new Error('HTTP '+r.status);
+        const d=await r.json();
+        LIVE_META=d.meta||null;
+        const typeMap={'direct_principal':'Manufacturer','distributor_reseller':'Distributor','marketplace_seller':'Online','marketplace_platform':'Online'};
+        LIVE=(d.suppliers||[]).map(s=>{
+            const waNum=s.whatsapp||s.phone||'-';
+            return {name:s.name||'',type:typeMap[s.classification]||'Supplier',loc:s.emirate||s.city||s.country||'UAE',
+                phone:s.phone||'-',mobile:s.whatsapp&&s.whatsapp!==s.phone?s.whatsapp:'-',wa:waNum,email:s.email||'-',
+                addr:s.address||'',web:s.website||'',src:s.engine==='google'?'Google':'DuckDuckGo',
+                sourceProduct:s.product||'',country:s.country||'UAE',verified:!!s.verified,
+                verifiedAt:s.verifiedAt||'',confidence:s.confidence||0,sourceRank:s.sourceRank||'',url:s.url||s.website||''};
+        });
+        const el=document.getElementById('liveDataLine');
+        if(el&&LIVE_META){el.innerHTML=' · <i class="fa-solid fa-rotate mr-1"></i>Live web data: <strong>'+LIVE.length+'</strong> suppliers · refreshed '+String(LIVE_META.generatedAt||'').slice(0,10)}
+        console.log('[Nexus] live data loaded:',LIVE.length,'suppliers');
+    }catch(e){console.warn('[Nexus] live data unavailable (embedded snapshot in use):',e.message)}
+}
+function findLive(query){
+    const q=norm(query);
+    if(!q)return [];
+    const toks=q.split(' ').filter(t=>t.length>1);
+    const qsyn=new Set();
+    toks.forEach(t=>{(SYN[t]||[]).forEach(x=>qsyn.add(norm(x)))});
+    const scored=[];
+    for(const s of LIVE){
+        const name=norm(s.name),prod=norm(s.sourceProduct),loc=norm(s.loc),typ=norm(s.type);
+        const hay=' '+name+' '+prod+' '+loc+' '+typ+' ';
+        if(!(hay.includes(' '+q+' ')||[...qsyn].some(x=>x.length>2&&hay.includes(' '+x+' '))))continue;
+        let score=0;
+        if(hay.includes(' '+q+' '))score+=100;
+        const qw=q.split(' ').filter(w=>w.length>2);
+        let hitAll=qw.length>0;
+        for(const w of qw){const hit=hay.includes(' '+w+' ');if(hit)score+=15;else hitAll=false}
+        if(hitAll&&qw.length>1)score+=30;
+        for(const x of qsyn){if(x.length>2&&hay.includes(' '+x+' '))score+=8}
+        for(const w of qw){if(w.length>=5&&name.split(' ').some(nw=>Math.abs(nw.length-w.length)<=1&&lev(nw,w)<=1)){score+=10;break}}
+        if(s.verified)score+=12;
+        score+=Math.round((s.confidence||0)*15);
+        scored.push({s,score});
+    }
+    scored.sort((a,b)=>b.score-a.score);
+    return scored.map(x=>x.s);
+}
+
+// =============================================
 // SOURCES LIST (including UAE accreditation registers)
 // =============================================
 const SOURCES = [
@@ -308,7 +364,7 @@ const SOURCES = [
 // =============================================
 // STATE
 // =============================================
-const state={currentTab:'text',extractedText:'',isRecording:false,recognition:null,searchResults:[],filteredResults:[],activeTypeFilter:'all',activeLocFilter:'all',searchQuery:'',isCalSearch:false};
+const state={currentTab:'text',extractedText:'',isRecording:false,recognition:null,searchResults:[],filteredResults:[],activeTypeFilter:'all',activeLocFilter:'all',searchQuery:'',isCalSearch:false,liveMatches:0};
 
 // =============================================
 // UTILITY
@@ -538,19 +594,22 @@ function findCalibration(query){
     });
 }
 
-// Combined search
+// Combined search: calibration register + live web data + curated catalog
 function findSuppliersFull(query){
     const calResults = findCalibration(query);
     const regResults = findSuppliers(query);
+    const liveResults = findLive(query);
     // Check for calibration keywords
     const calKeywords=['calibrat','cal. ','iso 17025','measuring','metrology','dosimetry','dimensional','instrumentation calibr'];
     const q=query.toLowerCase();
     const isCalSearch = calKeywords.some(k=>q.includes(k));
-    if(isCalSearch){
-        // Show calibration results first
-        return [...calResults, ...regResults];
-    }
-    return regResults;
+    const merged=[];const seen=new Set();
+    const push=r=>{const k=norm(r.name);if(!k||seen.has(k))return;seen.add(k);merged.push(r)};
+    if(isCalSearch){calResults.forEach(push)}   // official labs first for cal queries
+    liveResults.forEach(push);                  // fresh web-discovered suppliers
+    regResults.forEach(push);                   // curated embedded catalog
+    state.liveMatches=liveResults.length;
+    return merged;
 }
 
 // =============================================
@@ -560,6 +619,7 @@ async function runProcessingAnimation(query){
     const isCal = ['calibrat','iso 17025','measuring','metrology','dosimetry','dimensional'].some(k=>query.toLowerCase().includes(k));
     const steps=[
         {text:'Parsing input & extracting keywords...',icon:'fa-magnifying-glass',srcs:[]},
+        {text:'Searching live web data (Google + DuckDuckGo engine)...',icon:'fa-arrow-trend-up',srcs:['google','duckduckgo']},
         {text:`Scanning UAE accreditation directory for ISO 17025 labs...`,icon:'fa-landmark',srcs:['uae-govt-directory']},
         {text:'Scanning UAE accreditation open data...',icon:'fa-landmark-dot',srcs:['uae-govt-directory']},
         {text:'Scanning UAE directories (ATN Info, Reach UAE, 2GIS)...',icon:'fa-building',srcs:['atninfo.com','reachuae.com','2gis.ae']},
@@ -590,14 +650,17 @@ function renderResults(results,query){
     state.searchResults=results;state.filteredResults=[...results];state.activeTypeFilter='all';state.activeLocFilter='all';
     const uaeR=results.filter(r=>isUAE(r)),intlR=results.filter(r=>!isUAE(r)),types=[...new Set(results.map(r=>r.type||'Calibration'))].sort();
     const usedSrcs=[...new Set(results.map(r=>r.src||'database'))].filter(Boolean);
-    document.getElementById('resultsQueryLabel').textContent=`"${query.substring(0,80)}${query.length>80?'...':''}" — ${results.length} suppliers found`;
-    document.getElementById('sourcesUsedLabel').innerHTML=`<i class="fa-solid fa-database mr-1"></i> Sources: ${usedSrcs.map(s=>`<span class="${isUAE({loc:s})||['atninfo.com','reachuae.com','2gis.ae','moglix.ae','supplyvan.com','aabtools.com','aceuae.com','anbisolutions.com','firesupplies.ae','aliyaqoob.com','speedextools.com','adexuae.com','kempstoncontrols.ae','rsdelivers.com','misar.ae','amazon.ae','noon.com'].includes(s)?'badge-source':'badge-source-intl'}">${s}</span>`).join(' ')}`;
+    const escQ=String(query||'').replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+    document.getElementById('resultsQueryLabel').innerHTML=`&quot;${escQ.substring(0,80)}${query.length>80?'...':''}&quot; — ${results.length} suppliers found`+(state.liveMatches===0?'<span class="ml-2 text-[11px]" style="color:var(--muted);">(no live web matches — this product may not be in the weekly discovery catalog yet)</span>':'');
+    document.getElementById('sourcesUsedLabel').innerHTML=`<i class="fa-solid fa-database mr-1"></i> Sources: ${usedSrcs.map(s=>`<span class="${isUAE({loc:s})||['atninfo.com','reachuae.com','2gis.ae','moglix.ae','supplyvan.com','aabtools.com','aceuae.com','anbisolutions.com','firesupplies.ae','aliyaqoob.com','speedextools.com','adexuae.com','kempstoncontrols.ae','rsdelivers.com','misar.ae','amazon.ae','noon.com','Google','DuckDuckGo'].includes(s)?'badge-source':'badge-source-intl'}">${s}</span>`).join(' ')}`;
     const calCount=results.filter(r=>r.type==='Calibration').length;
+    const verCount=results.filter(r=>r.verified).length;
     sg.innerHTML=`
         <div class="stat-card anim-in" style="animation-delay:0s"><div class="stat-num" style="color:var(--iso);">${results.length}</div><div class="text-xs mt-1" style="color:var(--muted);">Total</div></div>
         <div class="stat-card anim-in" style="animation-delay:0.1s"><div class="stat-num" style="color:var(--accent);">${uaeR.length}</div><div class="text-xs mt-1" style="color:var(--muted);">UAE Based</div></div>
         <div class="stat-card anim-in" style="animation-delay:0.2s"><div class="stat-num" style="color:var(--fg-sec);">${intlR.length}</div><div class="text-xs mt-1" style="color:var(--muted);">International</div></div>
-        <div class="stat-card anim-in" style="animation-delay:0.3s"><div class="stat-num" style="color:var(--fg-sec);">${usedSrcs.length}</div><div class="text-xs mt-1" style="color:var(--muted);">Sources</div></div>`;
+        <div class="stat-card anim-in" style="animation-delay:0.3s"><div class="stat-num" style="color:var(--whatsapp);">${verCount}</div><div class="text-xs mt-1" style="color:var(--muted);">Verified</div></div>
+        <div class="stat-card anim-in" style="animation-delay:0.4s"><div class="stat-num" style="color:var(--fg-sec);">${usedSrcs.length}</div><div class="text-xs mt-1" style="color:var(--muted);">Sources</div></div>`;
     tf.innerHTML=`<button class="filter-btn active" data-type="all">All</button>`;
     types.forEach(t=>{tf.innerHTML+=`<button class="filter-btn" data-type="${t}">${t}</button>`});
     lf.innerHTML=`<button class="filter-btn active" data-loc="all">All</button><button class="filter-btn" data-loc="uae">UAE Only</button><button class="filter-btn" data-loc="intl">International</button>`;
@@ -626,8 +689,10 @@ function renderCards(results){
         const emailRow=(r.email&&r.email!=='-'&&r.email!=='N/A')?'<div class="contact-row" onclick="copyToClipboard(\''+esc(r.email)+'\')"><span class="cr-icon"><i class="fa-solid fa-envelope"></i></span><span class="text-sm">'+r.email+'</span></div>':'';
         const brandRow=(r.brands&&r.brands.length)?'<div class="flex flex-wrap gap-1 mt-3">'+r.brands.map(b=>'<span class="text-[11px] px-2 py-0.5 rounded" style="background:var(--bg-raised);border:1px solid var(--border);color:var(--fg-sec);">'+b+'</span>').join('')+'</div>':'';
         const govLink=r.href?'<a href="'+r.href+'" target="_blank" rel="noopener" class="btn-sm mt-3" style="color:var(--iso);border-color:rgba(16,185,129,0.3);"><i class="fa-solid fa-arrow-up-right-from-square"></i> Verify on official register</a>':'';
+        const webRow=(r.web&&r.web!=='-')?'<a href="'+r.web+'" target="_blank" rel="noopener" class="contact-row" style="cursor:pointer;"><span class="cr-icon" style="color:var(--iso);"><i class="fa-solid fa-globe"></i></span><span class="text-sm" style="color:var(--iso);">'+r.web.replace(/^https?:\/\/(www\.)?/,'')+'</span></a>':'';
+        const verLine=(r.verified!==undefined)?'<div class="flex flex-wrap items-center gap-2 mt-2"><span class="badge" style="'+(r.verified?'background:rgba(16,185,129,.12);color:#34d399;border-color:rgba(16,185,129,.35)':'background:rgba(148,163,184,.12);color:#94a3b8;border-color:rgba(148,163,184,.35)')+'"><i class="fa-solid '+(r.verified?'fa-circle-check':'fa-circle-question')+' mr-1"></i>'+(r.verified?'Verified':'Unverified')+'</span>'+(r.verifiedAt?'<span class="text-[10px]" style="color:var(--muted);">checked '+r.verifiedAt+'</span>':'')+(r.confidence?'<span class="text-[10px]" style="color:var(--muted);">'+Math.round(r.confidence*100)+'% confidence</span>':'')+'</div>':'';
         const srcLine='<div class="mt-3 pt-3 border-t flex items-center justify-between" style="border-color:var(--border);"><span class="text-[10px]" style="color:var(--muted);"><i class="fa-solid fa-database mr-1"></i>'+(r.sourceProduct||(isCal?'ISO 17025 Calibration':'Supplier'))+'</span><span class="text-[10px]" style="color:var(--muted);">'+ (r.src||'')+'</span></div>';
-        card.innerHTML='<div class="flex items-start justify-between gap-3 mb-3"><div class="min-w-0"><div class="flex items-center gap-2 flex-wrap mb-1.5">'+badges+'</div><h4 class="text-base font-bold leading-snug">'+r.name+'</h4></div></div>'+certBlock+addrRow+phoneRow+mobileRow+waRow+emailRow+brandRow+govLink+srcLine;
+        card.innerHTML='<div class="flex items-start justify-between gap-3 mb-3"><div class="min-w-0"><div class="flex items-center gap-2 flex-wrap mb-1.5">'+badges+'</div><h4 class="text-base font-bold leading-snug">'+r.name+'</h4></div></div>'+certBlock+addrRow+phoneRow+mobileRow+waRow+emailRow+brandRow+webRow+govLink+verLine+srcLine;
         rg.appendChild(card);
         requestAnimationFrame(()=>card.classList.add('visible'));
     });
@@ -734,9 +799,10 @@ document.getElementById('downloadPdfBtn').addEventListener('click',()=>{
     document.head.appendChild(st);
     const banner=document.createElement('div');
     banner.className='max-w-6xl mx-auto px-6 pb-4 text-center relative z-10';
-    banner.innerHTML='<p class="text-[11px]" style="color:var(--muted);"><i class="fa-solid fa-triangle-exclamation mr-1" style="color:var(--accent);"></i><strong>Prototype tool.</strong> Not affiliated with any government entity, accreditation body, or listed company. Supplier contact details are <em>sample data for demonstration</em> — verify everything on the linked official source before contacting or purchasing. Data snapshot: 10 Aug 2026.</p>';
+    banner.innerHTML='<p class="text-[11px]" style="color:var(--muted);"><i class="fa-solid fa-triangle-exclamation mr-1" style="color:var(--accent);"></i><strong>Prototype tool.</strong> Not affiliated with any government entity, accreditation body, or listed company. Embedded supplier rows are <em>sample data for demonstration</em>; live web results are auto-verified public data — always confirm details with the supplier before purchasing. Data snapshot: 10 Aug 2026.<span id="liveDataLine"></span></p>';
     const main=document.querySelector('main');
     if(main)main.appendChild(banner);
+    loadLiveData();
 })();
 </script>
 </body>
