@@ -160,7 +160,7 @@
     </div>
 </section>
 </main>
-<footer class="relative z-10 border-t py-8 text-center px-6" style="border-color:var(--border);"><div class="flex items-center justify-center gap-2 mb-2"><div class="w-5 h-5 rounded flex items-center justify-center" style="background:linear-gradient(135deg,var(--accent),#B87D08);"><i class="fa-solid fa-circle-nodes" style="font-size:8px;color:#0A0A0B;"></i></div><span class="text-sm font-semibold" style="color:var(--fg-sec);">Nexus Supplier Search Engine</span></div><p class="text-xs" style="color:var(--muted);">Includes EIAC & MOIAT ISO 17025 accredited calibration laboratories</p></footer>
+<footer class="relative z-10 border-t py-8 text-center px-6" style="border-color:var(--border);"><div class="flex items-center justify-center gap-2 mb-2"><div class="w-5 h-5 rounded flex items-center justify-center" style="background:linear-gradient(135deg,var(--accent),#B87D08);"><i class="fa-solid fa-circle-nodes" style="font-size:8px;color:#0A0A0B;"></i></div><span class="text-sm font-semibold" style="color:var(--fg-sec);">Nexus Supplier Search Engine</span></div><p class="text-xs" style="color:var(--muted);">Includes EIAC & MOIAT ISO 17025 accredited calibration laboratories</p><p class="text-[10px] mt-2 px-4 max-w-xl mx-auto leading-relaxed" style="color:var(--muted);">Unofficial directory — not affiliated with or endorsed by EIAC, MOIAT, or any listed company. Data may be outdated; verify accreditation on the official registries before relying on it. To request removal of a listing, open an issue at <a href="https://github.com/dskapco-boop/nexus/issues" target="_blank" rel="noopener" style="color:var(--accent);">github.com/dskapco-boop/nexus/issues</a>. This site collects no data — everything runs in your browser.</p></footer>
 <script>
 if(window.pdfjsLib)pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
@@ -804,25 +804,8 @@ document.getElementById('downloadPdfBtn').addEventListener('click',()=>{
     doc.save('Nexus_Report_'+ref+'.pdf');
     showToast('PDF report downloaded','success');
 });
-// =============================================
-// SCRAPER CODE BUTTONS (EIAC & MOIAT source cards)
-// =============================================
-document.querySelectorAll('.src-card').forEach(card=>{
-    const link=card.querySelector('a');
-    if(!link)return;
-    const url=link.getAttribute('href')||'';
-    const id=url.includes('eiac.gov.ae')?'eiac':url.includes('moiat.gov.ae')?'moiat':null;
-    if(!id)return;
-    const btn=document.createElement('button');
-    btn.className='btn-sm';
-    btn.style.cssText='color:var(--accent);border-color:rgba(212,149,10,0.3);margin-top:6px;';
-    btn.innerHTML='<i class="fa-solid fa-code"></i> Scraper code';
-    btn.addEventListener('click',()=>{
-        const src=SOURCES.find(s=>s.id===id);
-        openCodeModal(src.name+' Scraper',src.url+' — Node.js scraper for backend deployment',SCRAPER_CODE[id]);
-    });
-    card.querySelector('.min-w-0').appendChild(btn);
-});
+// Scraper-code buttons removed from the public UI for terms-of-service compliance.
+// (SCRAPER_CODE data stays in the file for the owner's internal tooling only.)
 // =============================================
 // PROTOTYPE DATA DISCLAIMER
 // =============================================
@@ -832,7 +815,7 @@ document.querySelectorAll('.src-card').forEach(card=>{
     document.head.appendChild(st);
     const banner=document.createElement('div');
     banner.className='max-w-6xl mx-auto px-6 pb-4 text-center relative z-10';
-    banner.innerHTML='<p class="text-[11px]" style="color:var(--muted);"><i class="fa-solid fa-circle-info mr-1" style="color:var(--accent);"></i>Prototype data — supplier contacts are indicative. Always verify ISO 17025 accreditation and current details on the official EIAC / MOIAT directories before purchase.</p>';
+    banner.innerHTML='<p class="text-[11px]" style="color:var(--muted);"><i class="fa-solid fa-triangle-exclamation mr-1" style="color:var(--accent);"></i><strong>Prototype tool.</strong> Not affiliated with EIAC, MOIAT, or any listed company. Supplier contact details are <em>sample data for demonstration</em> — verify everything on the linked official source before contacting or purchasing. Data snapshot: 10 Aug 2026.</p>';
     const main=document.querySelector('main');
     if(main)main.appendChild(banner);
 })();
