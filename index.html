@@ -112,7 +112,7 @@
     </div>
 </header>
 <div id="sourcesOverlay" class="sources-overlay" role="dialog"><div class="sources-panel">
-    <div class="flex items-center justify-between mb-5"><div><h2 class="text-xl font-bold">Data Sources</h2><p class="text-xs mt-1" style="color:var(--muted);">Including EIAC & MOIAT ISO 17025 directories</p></div><button id="closeSourcesBtn" class="w-9 h-9 rounded-lg flex items-center justify-center border border-[var(--border)]" style="background:var(--card);"><i class="fa-solid fa-xmark" style="color:var(--muted);"></i></button></div>
+    <div class="flex items-center justify-between mb-5"><div><h2 class="text-xl font-bold">Data Sources</h2><p class="text-xs mt-1" style="color:var(--muted);">Including UAE ISO 17025 accreditation directories</p></div><button id="closeSourcesBtn" class="w-9 h-9 rounded-lg flex items-center justify-center border border-[var(--border)]" style="background:var(--card);"><i class="fa-solid fa-xmark" style="color:var(--muted);"></i></button></div>
     <div id="sourcesList" class="flex flex-col gap-2"></div>
 </div></div>
 <div id="codeModal" class="code-modal-overlay" role="dialog"><div class="code-modal">
@@ -123,7 +123,7 @@
 <section id="inputSection" class="max-w-3xl mx-auto px-6 pt-14 pb-8">
     <div class="text-center mb-10 relative"><div class="hero-glow"></div><div class="nexus-mark justify-center mb-5 relative z-10"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
     <h2 class="text-3xl sm:text-5xl font-bold mb-4 relative z-10" style="letter-spacing:-1px;line-height:1.1;">Find Any Supplier,<br><span style="color:var(--accent);">Anywhere</span></h2>
-    <p style="color:var(--fg-sec);max-width:560px;margin:0 auto;" class="text-base leading-relaxed relative z-10">33 market sources + EIAC & MOIAT ISO 17025 accredited calibration labs across UAE</p></div>
+    <p style="color:var(--fg-sec);max-width:560px;margin:0 auto;" class="text-base leading-relaxed relative z-10">33 market sources + ISO 17025 accredited calibration labs across UAE</p></div>
     <div class="flex flex-wrap gap-2 mb-5" role="tablist">
         <button class="tab-btn active" data-tab="text" role="tab"><i class="fa-solid fa-keyboard"></i> Text</button>
         <button class="tab-btn" data-tab="image" role="tab"><i class="fa-solid fa-image"></i> Image</button>
@@ -160,117 +160,117 @@
     </div>
 </section>
 </main>
-<footer class="relative z-10 border-t py-8 text-center px-6" style="border-color:var(--border);"><div class="flex items-center justify-center gap-2 mb-2"><div class="w-5 h-5 rounded flex items-center justify-center" style="background:linear-gradient(135deg,var(--accent),#B87D08);"><i class="fa-solid fa-circle-nodes" style="font-size:8px;color:#0A0A0B;"></i></div><span class="text-sm font-semibold" style="color:var(--fg-sec);">Nexus Supplier Search Engine</span></div><p class="text-xs" style="color:var(--muted);">Includes EIAC & MOIAT ISO 17025 accredited calibration laboratories</p><p class="text-[10px] mt-2 px-4 max-w-xl mx-auto leading-relaxed" style="color:var(--muted);">Unofficial directory — not affiliated with or endorsed by EIAC, MOIAT, or any listed company. Data may be outdated; verify accreditation on the official registries before relying on it. To request removal of a listing, open an issue at <a href="https://github.com/dskapco-boop/nexus/issues" target="_blank" rel="noopener" style="color:var(--accent);">github.com/dskapco-boop/nexus/issues</a>. This site collects no data — everything runs in your browser.</p></footer>
+<footer class="relative z-10 border-t py-8 text-center px-6" style="border-color:var(--border);"><div class="flex items-center justify-center gap-2 mb-2"><div class="w-5 h-5 rounded flex items-center justify-center" style="background:linear-gradient(135deg,var(--accent),#B87D08);"><i class="fa-solid fa-circle-nodes" style="font-size:8px;color:#0A0A0B;"></i></div><span class="text-sm font-semibold" style="color:var(--fg-sec);">Nexus Supplier Search Engine</span></div><p class="text-xs" style="color:var(--muted);">Includes ISO 17025 accredited calibration laboratories (UAE government registers)</p><p class="text-[10px] mt-2 px-4 max-w-xl mx-auto leading-relaxed" style="color:var(--muted);">Unofficial directory — not affiliated with or endorsed by any government entity, accreditation body, or listed company. Data may be outdated; verify accreditation on the official registries before relying on it. To request removal of a listing, open an issue at <a href="https://github.com/dskapco-boop/nexus/issues" target="_blank" rel="noopener" style="color:var(--accent);">github.com/dskapco-boop/nexus/issues</a>. This site collects no data — everything runs in your browser.</p></footer>
 <script>
 if(window.pdfjsLib)pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
 // =============================================
-// ISO 17025 CALIBRATION DATABASE — EIAC + MOIAT MERGED
+// ISO 17025 CALIBRATION DATABASE — UAE ACCREDITATION REGISTERS MERGED
 // Fields: [name, certId, body, type, loc, addr, phone, email, web, validUntil, status, href]
 // =============================================
 const CAL=[
-// === EIAC Calibration Labs (LB-CAL-XXX) ===
-['AAB Weighing & Measuring Laboratory LLC','LB-CAL-084','EIAC','Calibration','Dubai','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=vW2U997DpT2kCXKW7uzKUkok6V7Va817391000321739100032&ID=60'],
-['AAL Group LTD','LB-CAL-068','EIAC','Calibration','Sharjah','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=tAxMOGunc9mzRn817KeREoAJRiJ5sL17390999881739099988&ID=51'],
-['Abhath Weights & Measuring Laboratory','LB-CAL-014','EIAC','Calibration','Dubai','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=fIfUojFyz1AmJjNNee6OGZL9rQDjZM17390998271739099827&ID=40'],
-['Accutech Automation FZCO','LB-CAL-016','EIAC','Calibration','Dubai','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=6r1AyJ6dkBUywrPCugs83IyQ83rMmN17391000231739100023&ID=58'],
-['ACCUVER Calibration Laboratory Co LLC','LB-CAL-050','EIAC','Calibration','Dubai','WH No-C45, Ind Area-1 Al Qusais, Dubai','+971-4-XXX-XXXX','-',null,'Jun 18, 2027','Active','https://eiac.gov.ae/en/directory-details/?tc=1GK2iH3id1UQCqgvi02dLFlP5qzdBj17390988031739098803&ID=7'],
-['Al Hoty-Stanger Laboratories','LB-CAL-019','EIAC','Calibration','Abu Dhabi','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=Ai4ZJ2KRoIZaccl1L6eweZpVsajOcF17391000181739100018&ID=57'],
-['Al Mahasin Calibration Devices LLC','LB-CAL-083','EIAC','Calibration','Sharjah','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=7h9RvWeOiYKpzE5zdLr1ZIuzS7ZgMh17390996841739099684&ID=20'],
-['Al Sanabel Physical & Mechanical Testing Lab LLC','LB-CAL-088','EIAC','Calibration','Dubai','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=ULBFpUhSKI8actN7sMPZJh3pXihF7d17391004491739100449&ID=64'],
-['Al Saqr Engineering','LB-CAL-056','EIAC','Calibration','Sharjah','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=ULBFpUhSKI8actN7sMPZJh3pXihF7d17391004741739100474&ID=65'],
-['Al Taif Technical Services Co LLC','LB-CAL-034','EIAC','Calibration','Abu Dhabi','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=s1wWzlFxOsEz2JDfaZ9BduXx3dhASe17390997701739099770&ID=34'],
-['Albatech Testing Services LLC','LB-CAL-030','EIAC','Calibration','Dubai','Latifa Bint Hamdan St, Al Quoz Industrial 3','+971-4-XXX-XXXX','-',null,'Mar 07, 2025','Active','https://eiac.gov.ae/en/directory-details/?tc=6uMMOlEILIVYkWe8UWTnlzdM2eqFpH17390996791739099679&ID=19'],
-['Almoayara Althakyah Lab (SmartCal)','LB-CAL-026','EIAC','Calibration','Sharjah','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=XnyUF0XmMm4hDq1J78lltZzb215c9U17390998451739099845&ID=41'],
-['Arabscale Calibration Services','LB-CAL-018','EIAC','Calibration','Dubai','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=fDLT0vBXqIb1DJRhrbNBEohKexsARE17390999031739099903&ID=44'],
-['Aragon Calibrations Laboratory','LB-CAL-022','EIAC','Calibration','Dubai','G-03, UAE Enterprises Bldg, Airport Road','+971-4-XXX-XXXX','-',null,'Aug 06, 2024','Active','https://eiac.gov.ae/en/directory-details/?tc=xDPrM1TD8meoOCoXYgJfkuGw8KVtRt17391000031739100003&ID=54'],
-['Arabian Calibration Devices Rep Co LLC','LB-CAL-007','EIAC','Calibration','Sharjah','Industrial Area 13, Near Rameez Hypermarket','+971-6-XXX-XXXX','-',null,'Oct 07, 2025','Active','https://eiac.gov.ae/en/directory-details/?tc=xpgWZBSbPZ61RdbPXUfnjdCvecbjB717391007591739100759&ID=80'],
-['Apex Aerospace FZE Dubai Branch','LB-CAL-036','EIAC','Calibration','Dubai','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=X53Ipk7PR0VILaSRG0zpoHFnMfKH3217390987941739098794&ID=5'],
-['Alif Safety Consultancy','LB-CAL-109','EIAC','Calibration','','',' ','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=aT2AOccENMXDb4dXBomcTnGCfev6gJLxKYu9IKr1&ID=1076'],
+// === Register 1: Calibration Labs (LB-CAL codes) ===
+['AAB Weighing & Measuring Laboratory LLC','LB-CAL-084','UAE Gov','Calibration','Dubai','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=vW2U997DpT2kCXKW7uzKUkok6V7Va817391000321739100032&ID=60'],
+['AAL Group LTD','LB-CAL-068','UAE Gov','Calibration','Sharjah','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=tAxMOGunc9mzRn817KeREoAJRiJ5sL17390999881739099988&ID=51'],
+['Abhath Weights & Measuring Laboratory','LB-CAL-014','UAE Gov','Calibration','Dubai','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=fIfUojFyz1AmJjNNee6OGZL9rQDjZM17390998271739099827&ID=40'],
+['Accutech Automation FZCO','LB-CAL-016','UAE Gov','Calibration','Dubai','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=6r1AyJ6dkBUywrPCugs83IyQ83rMmN17391000231739100023&ID=58'],
+['ACCUVER Calibration Laboratory Co LLC','LB-CAL-050','UAE Gov','Calibration','Dubai','WH No-C45, Ind Area-1 Al Qusais, Dubai','+971-4-XXX-XXXX','-',null,'Jun 18, 2027','Active','https://eiac.gov.ae/en/directory-details/?tc=1GK2iH3id1UQCqgvi02dLFlP5qzdBj17390988031739098803&ID=7'],
+['Al Hoty-Stanger Laboratories','LB-CAL-019','UAE Gov','Calibration','Abu Dhabi','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=Ai4ZJ2KRoIZaccl1L6eweZpVsajOcF17391000181739100018&ID=57'],
+['Al Mahasin Calibration Devices LLC','LB-CAL-083','UAE Gov','Calibration','Sharjah','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=7h9RvWeOiYKpzE5zdLr1ZIuzS7ZgMh17390996841739099684&ID=20'],
+['Al Sanabel Physical & Mechanical Testing Lab LLC','LB-CAL-088','UAE Gov','Calibration','Dubai','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=ULBFpUhSKI8actN7sMPZJh3pXihF7d17391004491739100449&ID=64'],
+['Al Saqr Engineering','LB-CAL-056','UAE Gov','Calibration','Sharjah','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=ULBFpUhSKI8actN7sMPZJh3pXihF7d17391004741739100474&ID=65'],
+['Al Taif Technical Services Co LLC','LB-CAL-034','UAE Gov','Calibration','Abu Dhabi','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=s1wWzlFxOsEz2JDfaZ9BduXx3dhASe17390997701739099770&ID=34'],
+['Albatech Testing Services LLC','LB-CAL-030','UAE Gov','Calibration','Dubai','Latifa Bint Hamdan St, Al Quoz Industrial 3','+971-4-XXX-XXXX','-',null,'Mar 07, 2025','Active','https://eiac.gov.ae/en/directory-details/?tc=6uMMOlEILIVYkWe8UWTnlzdM2eqFpH17390996791739099679&ID=19'],
+['Almoayara Althakyah Lab (SmartCal)','LB-CAL-026','UAE Gov','Calibration','Sharjah','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=XnyUF0XmMm4hDq1J78lltZzb215c9U17390998451739099845&ID=41'],
+['Arabscale Calibration Services','LB-CAL-018','UAE Gov','Calibration','Dubai','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=fDLT0vBXqIb1DJRhrbNBEohKexsARE17390999031739099903&ID=44'],
+['Aragon Calibrations Laboratory','LB-CAL-022','UAE Gov','Calibration','Dubai','G-03, UAE Enterprises Bldg, Airport Road','+971-4-XXX-XXXX','-',null,'Aug 06, 2024','Active','https://eiac.gov.ae/en/directory-details/?tc=xDPrM1TD8meoOCoXYgJfkuGw8KVtRt17391000031739100003&ID=54'],
+['Arabian Calibration Devices Rep Co LLC','LB-CAL-007','UAE Gov','Calibration','Sharjah','Industrial Area 13, Near Rameez Hypermarket','+971-6-XXX-XXXX','-',null,'Oct 07, 2025','Active','https://eiac.gov.ae/en/directory-details/?tc=xpgWZBSbPZ61RdbPXUfnjdCvecbjB717391007591739100759&ID=80'],
+['Apex Aerospace FZE Dubai Branch','LB-CAL-036','UAE Gov','Calibration','Dubai','','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=X53Ipk7PR0VILaSRG0zpoHFnMfKH3217390987941739098794&ID=5'],
+['Alif Safety Consultancy','LB-CAL-109','UAE Gov','Calibration','','',' ','-','-','-',null,'Active','https://eiac.gov.ae/en/directory-details/?tc=aT2AOccENMXDb4dXBomcTnGCfev6gJLxKYu9IKr1&ID=1076'],
 
-// === MOIAT Calibration Labs (NAL-XXX, Calibration per ISO/IEC 17025:2017) ===
-['Acatech Calibration Services LLC','NAL-195','MOIAT','Calibration','Abu Dhabi','Mussafah-40, Office 09','+971-2-XXX-XXXX','-',null,'May 11, 2029','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Accura Instrumentation & Calibration LLC','NAL-164','MOIAT','Calibration','Abu Dhabi','Mussafah M44','+971-2-XXX-XXXX','-',null,'Sep 21, 2024','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['ACCUVER Automation Mechanical & Physical Tests Co LLC','NAL-234','MOIAT','Calibration','Abu Dhabi','Warehouse-5, Plot 27A14, ICAD III','+971-2-XXX-XXXX','-',null,'May 16, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Adyard AbuDhabi LLC','NAL-128','MOIAT','Calibration','Abu Dhabi','Plot 10, MW2, Mussafah','+971-2-656-1963','-',null,'Sep 10, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Al Masaood Oil Industry Supplies WLL','NAL-189','MOIAT','Calibration','Abu Dhabi','Mussafah Industrial MN(5)','+971-2-XXX-XXXX','-',null,'Nov 20, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Al Waha Al Khadhra Calibration (AWAK)','NAL-136','MOIAT','Calibration','Sharjah','Industrial Area 15','+971-6-744-1218','awak@awakcalibration.com','awakcalibration.com','Feb 04, 2029','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Anaum International Electronics LLC','NAL-157','MOIAT','Calibration','Abu Dhabi','ICAD1, Mussafah-M41','+971-2-556-0138','admin.office@anaum.ae','anaum.ae','Mar 25, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Apex Aerospace Calibration Services LLC','NAL-200','MOIAT','Calibration','Dubai','Warehouse S.4, Plot 120-0, Al Qusais Ind. First','+971-4-XXX-XXXX','-',null,'Apr 19, 2029','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Aries Oil Field Services LLC','NAL-122','MOIAT','Calibration','Abu Dhabi','Al Mussafah','+971-2-550-8893','mechtest@ariesgroup.ae','ariesgroupglobal.com','Jul 1, 2024','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Autocontrol Process Instrumentation FZC','NAL-244','MOIAT','Calibration','Sharjah','Plot 1H-08B, Hamriyah Free Zone-1','+971-XXX-XXX-XX','-',null,'Jan 15, 2029','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Badri Instrumentation & Calibration','NAL-162','MOIAT','Calibration','Abu Dhabi','Industrial Musafah M(3) Q(7)','+971-2-XXX-XXXX','-',null,'Dec 19, 2025','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['CALTROLS Middle East LLC','NAL-151','MOIAT','Calibration','Abu Dhabi','M36 Mussafah','+971-2-550-9901','sales@caltrols.com','caltrols.com','Jan 23, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Carl Stahl Lifting Equipment Trading LLC','NAL-231','MOIAT','Calibration','Abu Dhabi','Musaffah Industrial','+971-2-XXX-XXXX','-',null,'Mar 24, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Consilium Middle East LLC','NAL-170','MOIAT','Calibration','Sharjah','Industrial Area 18','+971-6-545-9029','krishna.shonan@consiliumsafety.com','consiliumsafety.com','Jan 8, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Emirates Calibration Services','NAL-130','MOIAT','Calibration','Abu Dhabi','Mussaffah M2, Emirates Post Office Bldg, 3rd Floor','+971-2-553-8282','-','emirates-cal.com','Apr 28, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Emirates Material Testing Center','NAL-109','MOIAT','Calibration','Al Ain','Al Sanaiya, Backside of Bin Fadel Ready Mix','+971-3-722-2223','-',null,'Dec 5, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Envirozone Consulting & Testing Services LLC','NAL-248','MOIAT','Calibration','Abu Dhabi','Mussafah 40','+971-XXX-XXXX','-',null,'Apr 21, 2029','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Enviro & Industrial Solutions ME FZ-LLC','NAL-139','MOIAT','Calibration','Dubai','DSP Warehouse B13, Al Barsha South 2','+971-4-440-4917','-','eis-me.com','Feb 24, 2023','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Etihad Airways Engineering LLC','NAL-169','MOIAT','Calibration','Abu Dhabi','Abu Dhabi Airport','+971-2-575-7555','-',null,'Oct 25, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['EUROMECHANICAL Instrument Services','NAL-147','MOIAT','Calibration','Abu Dhabi','M36, ICAD 1, Mussafah','+971-2-550-7076','-','euromechanical.com','Voluntary Withdrawn','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['FANR Secondary Standards Dosimetry Lab','NAL-131','MOIAT','Calibration','Abu Dhabi','Al Zafranah, next to Khalifa University','+971-2-651-6552','-','fanr.gov.ae','Dec 5, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['General Const. Lab. Calibration LLC','NAL-240','MOIAT','Calibration','Sharjah','','+971-XXX-XXXX','-',null,'Sep 2, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Gulf Coast Instrumentation & Calibration LLC','NAL-241','MOIAT','Calibration','Abu Dhabi','MW5 Mussafah, opposite Fibrex Construction','+971-XXX-XXXX','-',null,'Sep 4, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Golden Circle Equipment Solutions LLC SP','NAL-249','MOIAT','Calibration','Sharjah','Office 2&3, Bldg 3472, Muwaileh','+971-XXX-XXXX','-',null,'Apr 24, 2029','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Gray Mackenzie Engineering Services LLC','NAL-148','MOIAT','Calibration','Dubai','Shed 118, Al Jadaf','+971-4-324-1380','workshop@gmes.ae','gmes.ae','Voluntary Withdrawn','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Inscal Technical Services','NAL-201','MOIAT','Calibration','Abu Dhabi','Musaffah M33','+971-XXX-XXXX','-',null,'Sep 22, 2026','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Master Systems Standardization Lab LLC','NAL-132','MOIAT','Calibration','Abu Dhabi','','+971-6-741-1426','-','mastersystems.org','Dec 25, 2021','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Metromac Automation Calibration Lab','NAL-004','MOIAT','Calibration','Abu Dhabi','','+971-2-554-4949','-','metromac.com','Sep 1, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Middle East Calibration Lab LLC','NAL-110','MOIAT','Calibration','Sharjah','Industrial Area 6','+971-6-575-0379','-',null,'Dec 31, 2025','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Metric Calibration & Testing Lab','NAL-232','MOIAT','Calibration','Sharjah','Industrial Area 15','+971-XXX-XXXX','-',null,'Mar 28, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Lonestar Technical & Industrial Services LLC','NAL-046','MOIAT','Calibration','Abu Dhabi','Bldg 503 & 505, Industrial City','+971-2-550-0767','Ltis@eim.ae','lonestar-lab.com','Sep 14, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Gulf Survey LLC','NAL-140','MOIAT','Calibration','Abu Dhabi','B14, ICAD 3, Mussafah','+971-2-644-9887','-','gsuae.com','Dec 16, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Al Hoty-Stanger Labs','NAL-013','MOIAT','Calibration','Abu Dhabi','Mussafah','+971-4-347-2201','-','alhotystangeruae.com','Feb 4, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Al Futtaim Element Materials Technology','NAL-056','MOIAT','Calibration','Dubai','Dubai Investment Park, Jebel Ali','+971-4-885-1001','-',null,'Feb 21, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['EHS-SGS Gulf Limited','NAL-006','MOIAT','Calibration','Dubai','','+971-4-883-1819','-',null,'Dec 2, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Geochem Middle East','NAL-010','MOIAT','Calibration','Dubai','PO Box 5778','+971-4-347-7244','-',null,'Apr 28, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Al Futtaim Element Materials Tech Dubai','NAL-058','MOIAT','Calibration','Abu Dhabi','Umm Al Naar','+971-2-558-2345','-',null,'Dec 24, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Arab Center for Engineering Studies','NAL-062','MOIAT','Calibration','Abu Dhabi','PO Box 5012','+971-2-550-2774','-','aces-int.com','Jan 23, 2029','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Arab Center for Eng. Studies - Al Ain','NAL-119','MOIAT','Calibration','Abu Dhabi','Al Sanaiya, Al Ain','+971-3-721-1533','-','aces-int.com','Jun 12, 2026','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Fugro Middle East','NAL-152','MOIAT','Calibration','Dubai','Al Quoz Industrial','+971-4-347-4060','-','fugro.com','Feb 13, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Independent Soil Testing Lab LLC','NAL-135','MOIAT','Calibration','Abu Dhabi','Mussafah','+971-2-555-3232','-','istl.ae','Jun 4, 2026','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Amspec Middle East - Fujairah','NAL-155','MOIAT','Calibration','Fujairah','Port of Fujairah','+971-9-228-4444','-','amspecllc.com','May 12, 2024','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Amspec Middle East - Dubai','NAL-156','MOIAT','Calibration','Dubai','Jebel Ali Free Zone','+971-4-887-9668','-','amspecllc.com','Mar 3, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Inspectorate International Ltd','NAL-059','MOIAT','Calibration','Dubai','National Industries Park, Jebel Ali','+971-4-899-8100','-',null,'Apr 11, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Intertek Fujairah FZC','NAL-227','MOIAT','Calibration','Fujairah','Warehouse 201 & 203, Fujairah Free Zone','+971-9-XXX-XXXX','-',null,'Dec 22, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Material Lab Testing Services LLC','NAL-038','MOIAT','Calibration','Abu Dhabi','Mussafah M2','+971-2-550-3040','-','eim.ae','Sep 3, 2023','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Matrix Lab Geotechnical Services','NAL-081','MOIAT','Calibration','Abu Dhabi','Mussafah M-9','+971-2-551-3354','-',null,'Mar 31, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Engineering & Research Intl - ERI','NAL-066','MOIAT','Calibration','Abu Dhabi','232 Al Istiqamah 1 St, Abu Dhabi Industrial City','+971-2-551-0151','-',null,'Jun 29, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Independent Laboratories LLC','NAL-211','MOIAT','Calibration','Sharjah','Sajaa','+971-XXX-XXXX','-',null,'May 19, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Holistic International Testing','NAL-091','MOIAT','Calibration','Dubai','Unit G04-A1, Dubai Science Park, Al Barsha South','+971-XXX-XXXX','-',null,'May 8, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Geoconsult Soil Research','NAL-120','MOIAT','Calibration','','','-',null,'-',null,'Cancelled',''],
-['Geoscience Testing Lab LLC','NAL-018','MOIAT','Calibration','Abu Dhabi','Mussafah','+971-2-554-8212','-','geoscience.ae','Sep 5, 2026','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Geoscience Testing Lab - Sharjah','NAL-134','MOIAT','Calibration','Sharjah','Al Zubara Industrial, Khorfakkan','+971-9-238-9824','-','geoscience.ae','Oct 5, 2028','Active','https://moiat.gov.ae/open-data/national-accreditation-department'],
-['Geoscience Testing Lab - Ajman','NAL-167','MOIAT','Calibration','Ajman','Manama 7','+971-XXX-XXXX','-','geoscience.ae','Oct 4, 2024','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Geoscience Testing Lab - Al Ain','NAL-184','MOIAT','Calibration','Al Ain','Sanaiya','+971-XXX-XXXX','-','geoscience.ae','Jul 27, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['ALPS Technical Services','NAL-118','MOIAT','Calibration','Abu Dhabi','Shaikh Sultan Bin Khalifa Bldg, Musafah 44','+971-XXX-XXXX','-',null,'Jul 27, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Gulf Test Safety Consultancies','NAI-022','MOIAT','Calibration','Abu Dhabi','Musafah 26','+971-2-557-5244','-','gulftest.org','Oct 20, 2022','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Arabian Bureau of Services','NAI-068','MOIAT','Calibration','Abu Dhabi','Khalidhiya, PO Box 47133','+971-2-667-5166','abosad.com','abosad.com','Jun 22, 2022','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['British Industrial Inspection Services LLC','NAI-034','MOIAT','Calibration','Abu Dhabi','Mussafah, PO Box 133185','+971-2-552-7809','britishiis.com','britishiis.com','Feb 23, 2023','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Bureau Veritas','NAI-030','MOIAT','Calibration','Abu Dhabi','','+971-2-644-4920','-','bureauveritas.com','Jun 22, 2022','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Lloyd\'s Register Middle East','NAI-062','MOIAT','Calibration','Abu Dhabi','PO Box 997','+971-2-627-2942','-','lr.org','Jun 10, 2022','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Dutest Safety & Security Consultancy','NAI-036','MOIAT','Calibration','Abu Dhabi','Musafah M54, Plot 4','+971-2-551-6969','-',null,'Apr 12, 2024','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Dynavative Indo Veritas','NAI-088','MOIAT','Calibration','Abu Dhabi','Al Rawdah Road 8, Mussafah M14','+971-2-546-0569','inspection@indoveritas.com','indoveritas.com','Oct 13, 2024','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Korean Techno Inspection','NAI-078','MOIAT','Calibration','Abu Dhabi','M36, Plot 134, Mussafah','+971-2-666-2568','-','kti.ae','Dec 5, 2023','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Carl Stahl (Lifting Cal.)','NAI-086','MOIAT','Calibration','Abu Dhabi','Musaffah Industrial','+971-XXX-XXXX','-',null,'Mar 7, 2025','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Genuine Safety Consultants','NAI-090','MOIAT','Calibration','Abu Dhabi','East 11, Al Muroor Road','+971-55-162-0006','Quality.AD@genuinesafety.net','genuinesafety.ae','Apr 20, 2025','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Astron Certification LLC','NAI-084','MOIAT','Calibration','Abu Dhabi','Mussafah','+971-2-575-9221','hiten@astrongroup.com','astrongroup.com','Aug 28, 2025','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
-['Eiwaa Oil & Gas Services LLC','NAI-072','MOIAT','Calibration','Abu Dhabi','Al Khalidiya, PO Box 28346','+971-2-631-3833','eiwaaconsultancy.com','eiwaaconsultancy.com','Oct 24, 2023','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+// === Register 2: Calibration Labs (NAL codes, ISO/IEC 17025:2017) ===
+['Acatech Calibration Services LLC','NAL-195','UAE Gov','Calibration','Abu Dhabi','Mussafah-40, Office 09','+971-2-XXX-XXXX','-',null,'May 11, 2029','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Accura Instrumentation & Calibration LLC','NAL-164','UAE Gov','Calibration','Abu Dhabi','Mussafah M44','+971-2-XXX-XXXX','-',null,'Sep 21, 2024','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['ACCUVER Automation Mechanical & Physical Tests Co LLC','NAL-234','UAE Gov','Calibration','Abu Dhabi','Warehouse-5, Plot 27A14, ICAD III','+971-2-XXX-XXXX','-',null,'May 16, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Adyard AbuDhabi LLC','NAL-128','UAE Gov','Calibration','Abu Dhabi','Plot 10, MW2, Mussafah','+971-2-656-1963','-',null,'Sep 10, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Al Masaood Oil Industry Supplies WLL','NAL-189','UAE Gov','Calibration','Abu Dhabi','Mussafah Industrial MN(5)','+971-2-XXX-XXXX','-',null,'Nov 20, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Al Waha Al Khadhra Calibration (AWAK)','NAL-136','UAE Gov','Calibration','Sharjah','Industrial Area 15','+971-6-744-1218','awak@awakcalibration.com','awakcalibration.com','Feb 04, 2029','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Anaum International Electronics LLC','NAL-157','UAE Gov','Calibration','Abu Dhabi','ICAD1, Mussafah-M41','+971-2-556-0138','admin.office@anaum.ae','anaum.ae','Mar 25, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Apex Aerospace Calibration Services LLC','NAL-200','UAE Gov','Calibration','Dubai','Warehouse S.4, Plot 120-0, Al Qusais Ind. First','+971-4-XXX-XXXX','-',null,'Apr 19, 2029','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Aries Oil Field Services LLC','NAL-122','UAE Gov','Calibration','Abu Dhabi','Al Mussafah','+971-2-550-8893','mechtest@ariesgroup.ae','ariesgroupglobal.com','Jul 1, 2024','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Autocontrol Process Instrumentation FZC','NAL-244','UAE Gov','Calibration','Sharjah','Plot 1H-08B, Hamriyah Free Zone-1','+971-XXX-XXX-XX','-',null,'Jan 15, 2029','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Badri Instrumentation & Calibration','NAL-162','UAE Gov','Calibration','Abu Dhabi','Industrial Musafah M(3) Q(7)','+971-2-XXX-XXXX','-',null,'Dec 19, 2025','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['CALTROLS Middle East LLC','NAL-151','UAE Gov','Calibration','Abu Dhabi','M36 Mussafah','+971-2-550-9901','sales@caltrols.com','caltrols.com','Jan 23, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Carl Stahl Lifting Equipment Trading LLC','NAL-231','UAE Gov','Calibration','Abu Dhabi','Musaffah Industrial','+971-2-XXX-XXXX','-',null,'Mar 24, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Consilium Middle East LLC','NAL-170','UAE Gov','Calibration','Sharjah','Industrial Area 18','+971-6-545-9029','krishna.shonan@consiliumsafety.com','consiliumsafety.com','Jan 8, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Emirates Calibration Services','NAL-130','UAE Gov','Calibration','Abu Dhabi','Mussaffah M2, Emirates Post Office Bldg, 3rd Floor','+971-2-553-8282','-','emirates-cal.com','Apr 28, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Emirates Material Testing Center','NAL-109','UAE Gov','Calibration','Al Ain','Al Sanaiya, Backside of Bin Fadel Ready Mix','+971-3-722-2223','-',null,'Dec 5, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Envirozone Consulting & Testing Services LLC','NAL-248','UAE Gov','Calibration','Abu Dhabi','Mussafah 40','+971-XXX-XXXX','-',null,'Apr 21, 2029','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Enviro & Industrial Solutions ME FZ-LLC','NAL-139','UAE Gov','Calibration','Dubai','DSP Warehouse B13, Al Barsha South 2','+971-4-440-4917','-','eis-me.com','Feb 24, 2023','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Etihad Airways Engineering LLC','NAL-169','UAE Gov','Calibration','Abu Dhabi','Abu Dhabi Airport','+971-2-575-7555','-',null,'Oct 25, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['EUROMECHANICAL Instrument Services','NAL-147','UAE Gov','Calibration','Abu Dhabi','M36, ICAD 1, Mussafah','+971-2-550-7076','-','euromechanical.com','Voluntary Withdrawn','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['FANR Secondary Standards Dosimetry Lab','NAL-131','UAE Gov','Calibration','Abu Dhabi','Al Zafranah, next to Khalifa University','+971-2-651-6552','-','fanr.gov.ae','Dec 5, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['General Const. Lab. Calibration LLC','NAL-240','UAE Gov','Calibration','Sharjah','','+971-XXX-XXXX','-',null,'Sep 2, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Gulf Coast Instrumentation & Calibration LLC','NAL-241','UAE Gov','Calibration','Abu Dhabi','MW5 Mussafah, opposite Fibrex Construction','+971-XXX-XXXX','-',null,'Sep 4, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Golden Circle Equipment Solutions LLC SP','NAL-249','UAE Gov','Calibration','Sharjah','Office 2&3, Bldg 3472, Muwaileh','+971-XXX-XXXX','-',null,'Apr 24, 2029','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Gray Mackenzie Engineering Services LLC','NAL-148','UAE Gov','Calibration','Dubai','Shed 118, Al Jadaf','+971-4-324-1380','workshop@gmes.ae','gmes.ae','Voluntary Withdrawn','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Inscal Technical Services','NAL-201','UAE Gov','Calibration','Abu Dhabi','Musaffah M33','+971-XXX-XXXX','-',null,'Sep 22, 2026','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Master Systems Standardization Lab LLC','NAL-132','UAE Gov','Calibration','Abu Dhabi','','+971-6-741-1426','-','mastersystems.org','Dec 25, 2021','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Metromac Automation Calibration Lab','NAL-004','UAE Gov','Calibration','Abu Dhabi','','+971-2-554-4949','-','metromac.com','Sep 1, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Middle East Calibration Lab LLC','NAL-110','UAE Gov','Calibration','Sharjah','Industrial Area 6','+971-6-575-0379','-',null,'Dec 31, 2025','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Metric Calibration & Testing Lab','NAL-232','UAE Gov','Calibration','Sharjah','Industrial Area 15','+971-XXX-XXXX','-',null,'Mar 28, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Lonestar Technical & Industrial Services LLC','NAL-046','UAE Gov','Calibration','Abu Dhabi','Bldg 503 & 505, Industrial City','+971-2-550-0767','Ltis@eim.ae','lonestar-lab.com','Sep 14, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Gulf Survey LLC','NAL-140','UAE Gov','Calibration','Abu Dhabi','B14, ICAD 3, Mussafah','+971-2-644-9887','-','gsuae.com','Dec 16, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Al Hoty-Stanger Labs','NAL-013','UAE Gov','Calibration','Abu Dhabi','Mussafah','+971-4-347-2201','-','alhotystangeruae.com','Feb 4, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Al Futtaim Element Materials Technology','NAL-056','UAE Gov','Calibration','Dubai','Dubai Investment Park, Jebel Ali','+971-4-885-1001','-',null,'Feb 21, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['EHS-SGS Gulf Limited','NAL-006','UAE Gov','Calibration','Dubai','','+971-4-883-1819','-',null,'Dec 2, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Geochem Middle East','NAL-010','UAE Gov','Calibration','Dubai','PO Box 5778','+971-4-347-7244','-',null,'Apr 28, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Al Futtaim Element Materials Tech Dubai','NAL-058','UAE Gov','Calibration','Abu Dhabi','Umm Al Naar','+971-2-558-2345','-',null,'Dec 24, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Arab Center for Engineering Studies','NAL-062','UAE Gov','Calibration','Abu Dhabi','PO Box 5012','+971-2-550-2774','-','aces-int.com','Jan 23, 2029','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Arab Center for Eng. Studies - Al Ain','NAL-119','UAE Gov','Calibration','Abu Dhabi','Al Sanaiya, Al Ain','+971-3-721-1533','-','aces-int.com','Jun 12, 2026','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Fugro Middle East','NAL-152','UAE Gov','Calibration','Dubai','Al Quoz Industrial','+971-4-347-4060','-','fugro.com','Feb 13, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Independent Soil Testing Lab LLC','NAL-135','UAE Gov','Calibration','Abu Dhabi','Mussafah','+971-2-555-3232','-','istl.ae','Jun 4, 2026','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Amspec Middle East - Fujairah','NAL-155','UAE Gov','Calibration','Fujairah','Port of Fujairah','+971-9-228-4444','-','amspecllc.com','May 12, 2024','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Amspec Middle East - Dubai','NAL-156','UAE Gov','Calibration','Dubai','Jebel Ali Free Zone','+971-4-887-9668','-','amspecllc.com','Mar 3, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Inspectorate International Ltd','NAL-059','UAE Gov','Calibration','Dubai','National Industries Park, Jebel Ali','+971-4-899-8100','-',null,'Apr 11, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Intertek Fujairah FZC','NAL-227','UAE Gov','Calibration','Fujairah','Warehouse 201 & 203, Fujairah Free Zone','+971-9-XXX-XXXX','-',null,'Dec 22, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Material Lab Testing Services LLC','NAL-038','UAE Gov','Calibration','Abu Dhabi','Mussafah M2','+971-2-550-3040','-','eim.ae','Sep 3, 2023','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Matrix Lab Geotechnical Services','NAL-081','UAE Gov','Calibration','Abu Dhabi','Mussafah M-9','+971-2-551-3354','-',null,'Mar 31, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Engineering & Research Intl - ERI','NAL-066','UAE Gov','Calibration','Abu Dhabi','232 Al Istiqamah 1 St, Abu Dhabi Industrial City','+971-2-551-0151','-',null,'Jun 29, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Independent Laboratories LLC','NAL-211','UAE Gov','Calibration','Sharjah','Sajaa','+971-XXX-XXXX','-',null,'May 19, 2027','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Holistic International Testing','NAL-091','UAE Gov','Calibration','Dubai','Unit G04-A1, Dubai Science Park, Al Barsha South','+971-XXX-XXXX','-',null,'May 8, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Geoconsult Soil Research','NAL-120','UAE Gov','Calibration','','','-',null,'-',null,'Cancelled',''],
+['Geoscience Testing Lab LLC','NAL-018','UAE Gov','Calibration','Abu Dhabi','Mussafah','+971-2-554-8212','-','geoscience.ae','Sep 5, 2026','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Geoscience Testing Lab - Sharjah','NAL-134','UAE Gov','Calibration','Sharjah','Al Zubara Industrial, Khorfakkan','+971-9-238-9824','-','geoscience.ae','Oct 5, 2028','Active','https://moiat.gov.ae/open-data/national-accreditation-department'],
+['Geoscience Testing Lab - Ajman','NAL-167','UAE Gov','Calibration','Ajman','Manama 7','+971-XXX-XXXX','-','geoscience.ae','Oct 4, 2024','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Geoscience Testing Lab - Al Ain','NAL-184','UAE Gov','Calibration','Al Ain','Sanaiya','+971-XXX-XXXX','-','geoscience.ae','Jul 27, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['ALPS Technical Services','NAL-118','UAE Gov','Calibration','Abu Dhabi','Shaikh Sultan Bin Khalifa Bldg, Musafah 44','+971-XXX-XXXX','-',null,'Jul 27, 2028','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Gulf Test Safety Consultancies','NAI-022','UAE Gov','Calibration','Abu Dhabi','Musafah 26','+971-2-557-5244','-','gulftest.org','Oct 20, 2022','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Arabian Bureau of Services','NAI-068','UAE Gov','Calibration','Abu Dhabi','Khalidhiya, PO Box 47133','+971-2-667-5166','abosad.com','abosad.com','Jun 22, 2022','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['British Industrial Inspection Services LLC','NAI-034','UAE Gov','Calibration','Abu Dhabi','Mussafah, PO Box 133185','+971-2-552-7809','britishiis.com','britishiis.com','Feb 23, 2023','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Bureau Veritas','NAI-030','UAE Gov','Calibration','Abu Dhabi','','+971-2-644-4920','-','bureauveritas.com','Jun 22, 2022','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Lloyd\'s Register Middle East','NAI-062','UAE Gov','Calibration','Abu Dhabi','PO Box 997','+971-2-627-2942','-','lr.org','Jun 10, 2022','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Dutest Safety & Security Consultancy','NAI-036','UAE Gov','Calibration','Abu Dhabi','Musafah M54, Plot 4','+971-2-551-6969','-',null,'Apr 12, 2024','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Dynavative Indo Veritas','NAI-088','UAE Gov','Calibration','Abu Dhabi','Al Rawdah Road 8, Mussafah M14','+971-2-546-0569','inspection@indoveritas.com','indoveritas.com','Oct 13, 2024','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Korean Techno Inspection','NAI-078','UAE Gov','Calibration','Abu Dhabi','M36, Plot 134, Mussafah','+971-2-666-2568','-','kti.ae','Dec 5, 2023','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Carl Stahl (Lifting Cal.)','NAI-086','UAE Gov','Calibration','Abu Dhabi','Musaffah Industrial','+971-XXX-XXXX','-',null,'Mar 7, 2025','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Genuine Safety Consultants','NAI-090','UAE Gov','Calibration','Abu Dhabi','East 11, Al Muroor Road','+971-55-162-0006','Quality.AD@genuinesafety.net','genuinesafety.ae','Apr 20, 2025','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Astron Certification LLC','NAI-084','UAE Gov','Calibration','Abu Dhabi','Mussafah','+971-2-575-9221','hiten@astrongroup.com','astrongroup.com','Aug 28, 2025','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
+['Eiwaa Oil & Gas Services LLC','NAI-072','UAE Gov','Calibration','Abu Dhabi','Al Khalidiya, PO Box 28346','+971-2-631-3833','eiwaaconsultancy.com','eiwaaconsultancy.com','Oct 24, 2023','Active','https://moiat.gov.ae/en/open-data/national-accreditation-department'],
 ];
 
 // Convert to objects
 const CAL_OBJS = CAL.map(c=>({
     name:c[0], certId:c[1], body:c[2], type:c[3], loc:c[4], addr:c[5], phone:c[6], email:c[7], web:c[8], validUntil:c[9], status:c[10], href:c[11],
-    isUAE:true, src: c[2]==='EIAC'?'eiac.gov.ae':'moiat.gov.ae'
+    isUAE:true, src:'uae-govt-directory'
 }));
 
 // =============================================
-// SOURCES LIST (including EIAC & MOIAT)
+// SOURCES LIST (including UAE accreditation registers)
 // =============================================
 const SOURCES = [
-    {id:'eiac',name:'EIAC Directory',url:'https://eiac.gov.ae/directory/',cat:'gov',region:'uae',email:'no',phone:'no',wa:'no',addr:'yes',note:'Emirates International Accreditation Center — ISO 17025 calibration labs'},
-    {id:'moiat',name:'MOIAT Open Data',url:'https://moiat.gov.ae/en/open-data',cat:'gov',region:'uae',email:'no',phone:'no',wa:'no',addr:'yes',note:'Ministry of Industry & Advanced Tech — NAL calibration labs'},
+    {id:'eiac',name:'UAE Accreditation Directory',url:'https://eiac.gov.ae/directory/',cat:'gov',region:'uae',email:'no',phone:'no',wa:'no',addr:'yes',note:'UAE ISO 17025 calibration labs register'},
+    {id:'moiat',name:'UAE Accreditation Open Data',url:'https://moiat.gov.ae/en/open-data',cat:'gov',region:'uae',email:'no',phone:'no',wa:'no',addr:'yes',note:'UAE ISO 17025 calibration labs (NAL codes)'},
     {id:'atninfo',name:'ATN Info',url:'https://www.atninfo.com/',cat:'dir',region:'uae',email:'yes',phone:'yes',wa:'partial',addr:'yes',note:'UAE business directory'},
     {id:'reachuae',name:'Reach UAE',url:'https://www.reachuae.com/',cat:'dir',region:'uae',email:'yes',phone:'yes',wa:'partial',addr:'yes',note:'UAE business listings'},
     {id:'2gis',name:'2GIS UAE',url:'https://2gis.ae/',cat:'map',region:'uae',email:'partial',phone:'yes',wa:'no',addr:'yes',note:'Maps directory'},
@@ -393,90 +393,9 @@ function closeCodeModal(){codeModal.classList.remove('open');currentCode=''}
 document.getElementById('closeCodeBtn').addEventListener('click',closeCodeModal);codeModal.addEventListener('click',e=>{if(e.target===codeModal)closeCodeModal()});
 document.getElementById('copyCodeBtn').addEventListener('click',()=>{if(currentCode)copyToClipboard(currentCode)});
 
-// EIAC & MOIAT scraper code
-const SCRAPER_CODE={
-eiac:`// EIAC Directory Scraper — ISO 17025 Calibration Labs
-// Source: https://eiac.gov.ae/directory/
-// Returns only LB-CAL entries
-const cheerio = require('cheerio');
+// Scraper reference code (kept out of the public build)
+// Scraper reference code removed from the public build (see git history).
 
-async function scrapeEIACCalibration() {
-  const url = 'https://eiac.gov.ae/en/directory/';
-  const res = await fetch(url, {headers:{'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}});
-  if (!res) return [];
-  const $ = cheerio.load(await res.text());
-  const results = [];
-  
-  // Navigate to calibration section if possible, or search all
-  const searchUrl = 'https://eiac.gov.ae/en/directory/?type=2&searchWord=calibration&size=200';
-  const res2 = await fetch(searchUrl, {headers:{'User-Agent':'Mozilla/5.0'}});
-  const $2 = cheerio.load(await res2.text());
-  
-  const containers = $2('.directory-listing, [class*="cab-card"], [class*="directory-item"]');
-  containers.each((i, el) => {
-    const type = $(el).find('[class*="type"], [class*="category"]').first().text().trim();
-    if (!type.includes('Calibration')) return;
-    const name = $(el).find('h3, h4, [class*="name"]').first().text().trim();
-    const certId = $(el).find('[class*="cert"], [class*="id"], [class*="code"]').first().text().trim();
-    const loc = $(el).find('[class*="location"], [class*="address"], [class*="city"]').first().text().trim();
-    const addr = $(el).find('[class*="address"], [class*="detail"]').first().text().trim();
-    const phone = $(el).find('[href^="tel:"], [class*="phone"]').first().text().trim();
-    const email = $(el).find('a[href^="mailto:"]').attr('href')?.replace('mailto:','') || '';
-    const href = $(el).find('a').first().attr('href') || '';
-    if (name) results.push({ name, certId, type, loc, addr, phone, email, href, body: 'EIAC', isUAE: true });
-  });
-  return results;
-}`,
-moiat:`// MOIAT Open Data Scraper — ISO 17025 Calibration Labs
-// Source: https://moiat.gov.ae/en/open-data/national-accreditation-department
-const cheerio = require('cheerio');
-
-async function scrapeMOIATCalibration() {
-  let results = [];
-  // MOIAT uses pagination
-  for (let page = 1; page <= 15; page++) {
-    const url = \`https://moiat.gov.ae/en/open-data/national-accreditation-department?searchWord=&Page=\${page}\`;
-    const res = await fetch(url, {headers:{'User-Agent':'Mozilla/5.0'}});
-    if (!res) break;
-    const $ = cheerio.load(await res.text());
-    let found = 0;
-    
-    $('table tr').each((i, tr) => {
-      const cells = $(tr).find('td');
-      if (cells.length < 5) return;
-      const typeCell = cells[2] ? cells[2].text() : '';
-      if (!typeCell.includes('Calibration')) return;
-      found++;
-      results.push({
-        name: cells[0] ? cells[0].text().trim() : '',
-        certId: cells[1] ? cells[1].text().trim() : '',
-        body: 'MOIAT',
-        type: 'Calibration',
-        loc: '',
-        addr: cells[3] ? cells[3].text().trim() : '',
-        phone: '',
-        email: '',
-        href: '',
-        isUAE: true
-      });
-      // Extract contact info from location cell
-      const locText = cells[3] ? cells[3].text() : '';
-      const phoneMatch = locText.match(/Tel:\s*([\+\d][\d\-\s]*)/);
-      if (phoneMatch) results[results.length-1].phone = phoneMatch[1].trim();
-      const emailMatch = locText.match(/Email:\s*([\w.+-]+@[\w.-]+)/);
-      if (emailMatch) results[results.length-1].email = emailMatch[1];
-      const webMatch = locText.match(/Website:\s*([^\s,]+)/);
-      if (webMatch) results[results.length-1].web = webMatch[1].replace(/[\s]+$/,'');
-      // Extract download link for scope document
-      const dl = $(tr).find('a[href*="ashx"]').attr('href') || $(tr).find('a[download]').attr('href') || '';
-      if (dl) results[results.length-1].href = dl.startsWith('http') ? dl : 'https://moiat.gov.ae' + dl;
-    });
-    if (!found) break;
-    await new Promise(r => setTimeout(r, 1200)); // Be respectful with rate limits
-  }
-  return results;
-}`
-};
 
 // =============================================
 // SEARCH LOGIC — Regular + Calibration
@@ -641,8 +560,8 @@ async function runProcessingAnimation(query){
     const isCal = ['calibrat','iso 17025','measuring','metrology','dosimetry','dimensional'].some(k=>query.toLowerCase().includes(k));
     const steps=[
         {text:'Parsing input & extracting keywords...',icon:'fa-magnifying-glass',srcs:[]},
-        {text:`Scanning EIAC directory for ISO 17025 labs...`,icon:'fa-landmark',srcs:['eiac.gov.ae']},
-        {text:'Scanning MOIAT for NAL calibration labs...',icon:'fa-landmark-dot',srcs:['moiat.gov.ae']},
+        {text:`Scanning UAE accreditation directory for ISO 17025 labs...`,icon:'fa-landmark',srcs:['uae-govt-directory']},
+        {text:'Scanning UAE accreditation open data...',icon:'fa-landmark-dot',srcs:['uae-govt-directory']},
         {text:'Scanning UAE directories (ATN Info, Reach UAE, 2GIS)...',icon:'fa-building',srcs:['atninfo.com','reachuae.com','2gis.ae']},
         {text:'Querying UAE B2B suppliers (RS Components, Kempston...)...',icon:'fa-store',srcs:['rsdelivers.com','kempstoncontrols.ae','moglix.ae']},
         {text:'Searching e-commerce (Amazon, Noon, SupplyVan)...',icon:'fa-cart-shopping',srcs:['amazon.ae','noon.com','supplyvan.com']},
@@ -651,8 +570,8 @@ async function runProcessingAnimation(query){
         {text:'Deduplicating & ranking results...',icon:'fa-arrow-up-wide-short',srcs:[]},
     ];
     if(isCal){
-        steps.splice(1,0, {text:'Scanning EIAC directory for ISO 17025 labs...',icon:'fa-landmark',srcs:['eiac.gov.ae']});
-        steps.splice(1,0, {text:'Scanning MOIAT for NAL calibration labs...',icon:'fa-landmark-dot',srcs:['moiat.gov.ae']});
+        steps.splice(1,0, {text:'Scanning UAE accreditation directory for ISO 17025 labs...',icon:'fa-landmark',srcs:['uae-govt-directory']});
+        steps.splice(1,0, {text:'Scanning UAE accreditation open data...',icon:'fa-landmark-dot',srcs:['uae-govt-directory']});
     }
     const is=document.getElementById('inputSection'),ps=document.getElementById('processingSection'),sc=document.getElementById('stepsContainer'),pf=document.getElementById('progressFill');
     is.classList.add('hidden');ps.classList.remove('hidden');sc.innerHTML='';pf.style.width='0%';
@@ -698,7 +617,7 @@ function renderCards(results){
         card.className='supplier-card'+(isCal?' cal-card':'');
         card.style.animationDelay=Math.min(i*60,600)+'ms';
         const badges=(isCal?'<span class="badge badge-iso17025"><i class="fa-solid fa-certificate mr-1"></i>ISO 17025 Accredited</span>':'<span class="badge '+getBadgeClass(r.type)+'">'+(r.type||'Supplier')+'</span>')+'<span class="badge '+getLocBadge(r.loc||'')+'">'+(r.loc||'UAE')+'</span>';
-        const certBlock=(isCal&&r.certId)?'<div class="flex flex-wrap items-center gap-2 mb-3"><span class="badge-cert-id">'+r.certId+'</span><span class="badge '+(r.body==='MOIAT'?'badge-moiat':'badge-eiac')+'">'+r.body+'</span><span class="text-xs '+(r.status==='Active'?'status-active':(r.status==='Withdrawn'?'status-withdrawn':'status-partial'))+'"><i class="fa-solid fa-circle text-[6px] mr-1"></i>'+(r.status||'Active')+'</span>'+(r.validUntil?'<span class="text-xs" style="color:var(--muted);">Valid until '+r.validUntil+'</span>':'')+'</div>':'';
+        const certBlock=(isCal&&r.certId)?'<div class="flex flex-wrap items-center gap-2 mb-3"><span class="badge-cert-id">'+r.certId+'</span><span class="badge '+'badge-eiac'+'">'+r.body+'</span><span class="text-xs '+(r.status==='Active'?'status-active':(r.status==='Withdrawn'?'status-withdrawn':'status-partial'))+'"><i class="fa-solid fa-circle text-[6px] mr-1"></i>'+(r.status||'Active')+'</span>'+(r.validUntil?'<span class="text-xs" style="color:var(--muted);">Valid until '+r.validUntil+'</span>':'')+'</div>':'';
         const esc=s=>s.replace(/'/g,"\\'");
         const addrRow=r.addr?'<div class="contact-row" onclick="copyToClipboard(\''+esc(r.addr)+'\')"><span class="cr-icon"><i class="fa-solid fa-location-dot"></i></span><span class="text-sm" style="color:var(--fg-sec);">'+r.addr+'</span></div>':'';
         const phoneRow=(r.phone&&r.phone!=='-')?'<div class="contact-row" onclick="copyToClipboard(\''+esc(r.phone)+'\')"><span class="cr-icon"><i class="fa-solid fa-phone"></i></span><span class="text-sm">'+r.phone+'</span></div>':'';
@@ -706,7 +625,7 @@ function renderCards(results){
         const waRow=(r.wa&&r.wa!=='-')?'<div class="contact-row" onclick="openWa(\''+esc(r.wa)+'\',\''+esc(r.name)+'\')"><span class="cr-icon" style="color:var(--whatsapp);"><i class="fa-brands fa-whatsapp"></i></span><span class="text-sm" style="color:var(--whatsapp);">'+r.wa+'</span></div>':'';
         const emailRow=(r.email&&r.email!=='-'&&r.email!=='N/A')?'<div class="contact-row" onclick="copyToClipboard(\''+esc(r.email)+'\')"><span class="cr-icon"><i class="fa-solid fa-envelope"></i></span><span class="text-sm">'+r.email+'</span></div>':'';
         const brandRow=(r.brands&&r.brands.length)?'<div class="flex flex-wrap gap-1 mt-3">'+r.brands.map(b=>'<span class="text-[11px] px-2 py-0.5 rounded" style="background:var(--bg-raised);border:1px solid var(--border);color:var(--fg-sec);">'+b+'</span>').join('')+'</div>':'';
-        const govLink=r.href?'<a href="'+r.href+'" target="_blank" rel="noopener" class="btn-sm mt-3" style="color:var(--iso);border-color:rgba(16,185,129,0.3);"><i class="fa-solid fa-arrow-up-right-from-square"></i> Verify on '+(r.body==='MOIAT'?'MOIAT':'EIAC')+'</a>':'';
+        const govLink=r.href?'<a href="'+r.href+'" target="_blank" rel="noopener" class="btn-sm mt-3" style="color:var(--iso);border-color:rgba(16,185,129,0.3);"><i class="fa-solid fa-arrow-up-right-from-square"></i> Verify on official register</a>':'';
         const srcLine='<div class="mt-3 pt-3 border-t flex items-center justify-between" style="border-color:var(--border);"><span class="text-[10px]" style="color:var(--muted);"><i class="fa-solid fa-database mr-1"></i>'+(r.sourceProduct||(isCal?'ISO 17025 Calibration':'Supplier'))+'</span><span class="text-[10px]" style="color:var(--muted);">'+ (r.src||'')+'</span></div>';
         card.innerHTML='<div class="flex items-start justify-between gap-3 mb-3"><div class="min-w-0"><div class="flex items-center gap-2 flex-wrap mb-1.5">'+badges+'</div><h4 class="text-base font-bold leading-snug">'+r.name+'</h4></div></div>'+certBlock+addrRow+phoneRow+mobileRow+waRow+emailRow+brandRow+govLink+srcLine;
         rg.appendChild(card);
@@ -797,7 +716,7 @@ document.getElementById('downloadPdfBtn').addEventListener('click',()=>{
         didDrawPage:data=>{
             const n=doc.internal.getNumberOfPages();
             doc.setFontSize(8);doc.setTextColor(120,120,130);
-            doc.text('Nexus Supplier Search Engine — '+ref+' · ISO 17025 data: EIAC & MOIAT',40,data.cursor.y+24);
+            doc.text('Nexus Supplier Search Engine — '+ref+' · ISO 17025 data: UAE government registers',40,data.cursor.y+24);
             doc.text('Page '+n,pageW-40,data.cursor.y+24,{align:'right'});
         }
     });
@@ -815,7 +734,7 @@ document.getElementById('downloadPdfBtn').addEventListener('click',()=>{
     document.head.appendChild(st);
     const banner=document.createElement('div');
     banner.className='max-w-6xl mx-auto px-6 pb-4 text-center relative z-10';
-    banner.innerHTML='<p class="text-[11px]" style="color:var(--muted);"><i class="fa-solid fa-triangle-exclamation mr-1" style="color:var(--accent);"></i><strong>Prototype tool.</strong> Not affiliated with EIAC, MOIAT, or any listed company. Supplier contact details are <em>sample data for demonstration</em> — verify everything on the linked official source before contacting or purchasing. Data snapshot: 10 Aug 2026.</p>';
+    banner.innerHTML='<p class="text-[11px]" style="color:var(--muted);"><i class="fa-solid fa-triangle-exclamation mr-1" style="color:var(--accent);"></i><strong>Prototype tool.</strong> Not affiliated with any government entity, accreditation body, or listed company. Supplier contact details are <em>sample data for demonstration</em> — verify everything on the linked official source before contacting or purchasing. Data snapshot: 10 Aug 2026.</p>';
     const main=document.querySelector('main');
     if(main)main.appendChild(banner);
 })();
