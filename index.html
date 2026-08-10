@@ -285,7 +285,7 @@ async function loadLiveData(){
             const waNum=s.whatsapp||s.phone||'-';
             return {name:s.name||'',type:typeMap[s.classification]||'Supplier',loc:s.emirate||s.city||s.country||'UAE',
                 phone:s.phone||'-',mobile:s.whatsapp&&s.whatsapp!==s.phone?s.whatsapp:'-',wa:waNum,email:s.email||'-',
-                addr:s.address||'',web:s.website||'',src:s.engine==='google'?'Google':'DuckDuckGo',
+                addr:s.address||'',web:s.website||'',src:({google:'Google',searxng:'SearXNG',duckduckgo:'DuckDuckGo',mojeek:'Mojeek',bing:'Bing'})[s.engine]||s.engine||'Web',
                 sourceProduct:s.product||'',country:s.country||'UAE',verified:!!s.verified,
                 verifiedAt:s.verifiedAt||'',confidence:s.confidence||0,sourceRank:s.sourceRank||'',url:s.url||s.website||''};
         });
@@ -619,7 +619,7 @@ async function runProcessingAnimation(query){
     const isCal = ['calibrat','iso 17025','measuring','metrology','dosimetry','dimensional'].some(k=>query.toLowerCase().includes(k));
     const steps=[
         {text:'Parsing input & extracting keywords...',icon:'fa-magnifying-glass',srcs:[]},
-        {text:'Searching live web data (Google + DuckDuckGo engine)...',icon:'fa-arrow-trend-up',srcs:['google','duckduckgo']},
+        {text:'Searching live web data (SearXNG · Google · DuckDuckGo · Mojeek · Bing)...',icon:'fa-arrow-trend-up',srcs:['google','duckduckgo','searxng','mojeek','bing']},
         {text:`Scanning UAE accreditation directory for ISO 17025 labs...`,icon:'fa-landmark',srcs:['uae-govt-directory']},
         {text:'Scanning UAE accreditation open data...',icon:'fa-landmark-dot',srcs:['uae-govt-directory']},
         {text:'Scanning UAE directories (ATN Info, Reach UAE, 2GIS)...',icon:'fa-building',srcs:['atninfo.com','reachuae.com','2gis.ae']},
@@ -652,7 +652,7 @@ function renderResults(results,query){
     const usedSrcs=[...new Set(results.map(r=>r.src||'database'))].filter(Boolean);
     const escQ=String(query||'').replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
     document.getElementById('resultsQueryLabel').innerHTML=`&quot;${escQ.substring(0,80)}${query.length>80?'...':''}&quot; — ${results.length} suppliers found`+(state.liveMatches===0?'<span class="ml-2 text-[11px]" style="color:var(--muted);">(no live web matches — this product may not be in the weekly discovery catalog yet)</span>':'');
-    document.getElementById('sourcesUsedLabel').innerHTML=`<i class="fa-solid fa-database mr-1"></i> Sources: ${usedSrcs.map(s=>`<span class="${isUAE({loc:s})||['atninfo.com','reachuae.com','2gis.ae','moglix.ae','supplyvan.com','aabtools.com','aceuae.com','anbisolutions.com','firesupplies.ae','aliyaqoob.com','speedextools.com','adexuae.com','kempstoncontrols.ae','rsdelivers.com','misar.ae','amazon.ae','noon.com','Google','DuckDuckGo'].includes(s)?'badge-source':'badge-source-intl'}">${s}</span>`).join(' ')}`;
+    document.getElementById('sourcesUsedLabel').innerHTML=`<i class="fa-solid fa-database mr-1"></i> Sources: ${usedSrcs.map(s=>`<span class="${isUAE({loc:s})||['atninfo.com','reachuae.com','2gis.ae','moglix.ae','supplyvan.com','aabtools.com','aceuae.com','anbisolutions.com','firesupplies.ae','aliyaqoob.com','speedextools.com','adexuae.com','kempstoncontrols.ae','rsdelivers.com','misar.ae','amazon.ae','noon.com','Google','DuckDuckGo','SearXNG','Mojeek','Bing'].includes(s)?'badge-source':'badge-source-intl'}">${s}</span>`).join(' ')}`;
     const calCount=results.filter(r=>r.type==='Calibration').length;
     const verCount=results.filter(r=>r.verified).length;
     sg.innerHTML=`
